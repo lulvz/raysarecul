@@ -1,8 +1,9 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
-int main(){
-    printf("ha");
-
+int main()
+{
+    std::cout << "nah" << '\n';
+     
     return 0;
 }
-
