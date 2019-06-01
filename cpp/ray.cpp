@@ -10,7 +10,7 @@ int h;
 
 int main()
 {
-    Color white(255, 36, 0);
+    Color white(255,255,255);
     ::h = 500;
     ::w = 500;
     Color pixel_col[h][w];
