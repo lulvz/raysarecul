@@ -1,2 +1,2 @@
 all:
-	g++ ray.cpp Vec3.cpp -o hello
+	g++ ray.cpp -o hello
