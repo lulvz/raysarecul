@@ -8,24 +8,21 @@ using namespace std;
 int w;
 int h;
 
-RGBsave RGB_test;
-
 int main()
 {
-    RGB_test.r = 1.0;
-    RGB_test.g = 1.0;
-    RGB_test.b = 1.0;
-
-
-    ::h = 200;
-    ::w = 400;
+    Color white(255, 36, 0);
+    ::h = 500;
+    ::w = 500;
+    Color pixel_col[h][w];
+    Sphere sphere(Vec3(::w/2,::h/2,50),20);
 
     ofstream out("img.ppm");
-    // output info to file -.-
-    out << "P3\n" << ::w << " " << ::h << "\n255" << '\n';
 
     // info
     cout << "starting the writing process" << endl;
+
+    // output info to file -.-
+    out << "P3\n" << ::w << " " << ::h << "\n255" << '\n';
 
     // these loops go over evey pixel on the specified width and height
     for (int y=0; y<h; y++){
@@ -47,8 +44,21 @@ int main()
             out << ir << " " << ig << " " << ib << "\n";
             */
 
+            // send ray for every pixel
             Ray ray(Vec3(x,y,0), Vec3(0,0,1));
 
+            float t;        // no idea why its set to 20000 lol
+
+            // check for intersections
+            if(sphere.intersect(ray,t)){
+
+                //set color to the damn pixel
+                pixel_col[y][x] = white;
+            }
+
+            out << pixel_col[y][x].r << " ";
+            out << pixel_col[y][x].g << " ";
+            out << pixel_col[y][x].b << endl;
         }
     }
     return 0;
