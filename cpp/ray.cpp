@@ -28,7 +28,7 @@ int main()
 
     // creating a sphere
     //Sphere sphere(Vec3(w/2,h/2,10),70);
-    Sphere sphere(Vec3(w/2,h/2,10), 30);
+    Sphere sphere(Vec3(w/2,h/2,0), 22);
 
     // setting the name of the file and creating an ofstream object
     ofstream out("img.ppm");

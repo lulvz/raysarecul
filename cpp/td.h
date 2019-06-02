@@ -42,7 +42,7 @@ struct Sphere{
         float a = dot(d-o, d-o);
         float b = 2*dot(d-o, o-ce);
         float c = dot(ce, ce) + dot(o, o) - 2*(dot(ce, o)) - r*r;
-        float disc = (b*b-4*a*c)/2;
+        float disc = (b*b-4*a*c);
         if(disc < 0) return false;
         else{
             disc = sqrt(disc);
