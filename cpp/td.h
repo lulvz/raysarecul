@@ -48,7 +48,6 @@ struct Sphere{
             disc = sqrt(disc);
             float zero0 = -b - disc;
             float zero1 = -b + disc;
-
             t0 = zero0;
             t1 = zero1;
         }
