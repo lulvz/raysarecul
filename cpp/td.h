@@ -36,7 +36,7 @@ struct Sphere{
 
     Sphere(Vec3 i, float j){c=i,r=j;}
 
-    bool intersect(Ray ray, float &t){
+    bool intersect(Ray ray, float &t){      // tis is goddamn fucking with my spirit ;_;
         Vec3 o=ray.o;
         Vec3 d=ray.d;
         Vec3 oc=o-c;        // vector with direction from sphere to camera
