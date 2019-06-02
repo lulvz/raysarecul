@@ -8,8 +8,8 @@ using namespace std;
 
 int main()
 {
-    const int h = 600;
-    const int w = 600;
+    const int h = 1080;
+    const int w = 1920;
 
     // allocating memory to store the
     Color** pixel_col = new Color*[h];
@@ -19,6 +19,9 @@ int main()
 
     // defining color white
     Color white(255,255,255);
+
+    // defining background color
+    Color backg(128,0,128);
 
     // creating a sphere
     Sphere sphere(Vec3(w/2,h/2,50),70);
@@ -42,11 +45,12 @@ int main()
 
             // check for intersections
             if(sphere.intersect(ray,t)){
-
-                //set color to the damn pixel
+                // set color to the damn pixel
                 pixel_col[y][x] = white;
+            } else{
+                // backgtound color setting
+                pixel_col[y][x] = backg;
             }
-
             out << pixel_col[y][x].r << " ";
             out << pixel_col[y][x].g << " ";
             out << pixel_col[y][x].b << endl;
