@@ -31,30 +31,29 @@ struct Ray{
 };
 
 struct Sphere{
-    Vec3 c;     // center
+    Vec3 ce;     // center
     float r;        // radius
 
-    Sphere(Vec3 i, float j){c=i,r=j;}
+    Sphere(Vec3 i, float j){ce=i,r=j;}
 
-    bool intersect(Ray ray, float &t){      // tis is goddamn fucking with my spirit ;_;
-        Vec3 o=ray.o;
-        Vec3 d=ray.d;
-        Vec3 oc=o-c;        // vector with direction from sphere to camera
-        float b = 2*dot(oc,d);      //
-        float c = dot(oc,oc) - r*r;
-        float disc = (b*b-4*1*c)/2;     // formula resolvente lol
-        if(disc<0) return false;        // se o delta dentro da raiz for negativo quer dizer que nao ha zeros, como em matematica assim nao ha intersecoes com a esfera
+    bool intersect(Ray ray, float &t0, float &t1){
+        Vec3 o = ray.o;
+        Vec3 d = ray.d;
+        float a = dot(d-o, d-o);
+        float b = 2*dot(d-o, o-ce);
+        float c = dot(ce, ce) + dot(o, o) - 2*(dot(ce, o)) - r*r;
+        float disc = (b*b-4*a*c)/2;
+        if(disc < 0) return false;
         else{
-            disc = sqrt(disc);      // se o delta for maior que zero calcula-se os valores ou o valor se for 0
-            float zero0 = -b-disc;      // continuase a formula resolvente
-            float zero1 = -b+disc;      // continuase a formula resolvente
-            if (zero0<zero1) t=zero0;       // retornase o valor mais baixo para o valor zero
-            else{
-                t=zero1;
-            };
+            disc = sqrt(disc);
+            float zero0 = -b - disc;
+            float zero1 = -b + disc;
+
+            t0 = zero0;
+            t1 = zero1;
+        }
         return true;
-        };
-    };
+    }
 };
 
 struct Color{

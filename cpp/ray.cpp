@@ -6,7 +6,8 @@
 
 using namespace std;
 
-float t;        // place to store the zero from the intersect funtion inside sphere
+float t0;       // place to store the zeros from the intersect funtion inside sphere
+float t1;       // place to store the zeros from the intersect funtion inside sphere
 
 int main()
 {
@@ -27,7 +28,7 @@ int main()
 
     // creating a sphere
     //Sphere sphere(Vec3(w/2,h/2,10),70);
-    Sphere sphere(Vec3(4,4,4), 1);
+    Sphere sphere(Vec3(w/2,h/2,10), 30);
 
     // setting the name of the file and creating an ofstream object
     ofstream out("img.ppm");
@@ -45,7 +46,7 @@ int main()
             Ray ray(Vec3(x,y,0), Vec3(0,0,1));
 
             // check for intersections
-            if(sphere.intersect(ray,t)){
+            if(sphere.intersect(ray,t0,t1)){
                 // set color to the damn pixel
                 pixel_col[y][x] = white;
             } else{
@@ -57,7 +58,7 @@ int main()
             out << pixel_col[y][x].b << endl;
         }
     }
-    cout << t << endl;
+    cout << t0 << " " << t1 << endl;
     // deallocating the pixel_col thingy
     for(int i = 0; i < h; i++)
         delete[] pixel_col[i];
