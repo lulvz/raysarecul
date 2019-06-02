@@ -39,10 +39,7 @@ struct Sphere{
     bool intersect(Ray ray, float &t0, float &t1){
         Vec3 o = ray.o - ce;
         Vec3 d = ray.d;
-        //float a = dot(d-o, d-o);
-        //float b = 2*dot(d-o, o-ce);
-        //float c = dot(ce, ce) + dot(o, o) - 2*(dot(ce, o)) - r*r;
-
+        
         const float A = dot(d, d);
         const float B = 2 * dot(o, d);
         const float C = dot(o, o) - r * r;
@@ -57,16 +54,6 @@ struct Sphere{
             t1 = zero1;
         }
         return true;
-        /*float disc = (b*b-4*a*c);
-        if(disc < 0) return false;
-        else{
-            disc = sqrt(disc);
-            float zero0 = -b - disc;
-            float zero1 = -b + disc;
-            t0 = zero0;
-            t1 = zero1;
-        }
-        return true;*/
     }
 };
 
