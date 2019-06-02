@@ -1,0 +1,29 @@
+// center of sphere
+P3 (x3,y3,z3)
+
+// vectorial equation of the line
+P_(x,y,z) = P1(x,y,z) + u(P2(x,y,z) - P1(x,y,z))
+or
+x_ = x1 + u (x2 - x1)
+y_ = y1 + u (y2 - y1)
+z_ = z1 + u (z2 - z1)
+
+
+(x - x3)² + (y - y3)² + (z - z3)² = r²
+
+// substituting the equation of the line into the sphere we get
+(x1 + u(x2 - x1) - x3)² + (y1 + u(y2 - y1) - y3)² + (z1 + u(z2 - z1) - z3)² = r²
+
+// final expression form
+a(u)² + b(u) + c = 0
+
+// if we reduce the expression where we substituted the
+// line equation into the sphere we get the following results for the quadratic formula
+a = (x2 - x1)2 + (y2 - y1)2 + (z2 - z1)2
+
+b = 2[(x2 - x1)(x1 - x3) + (y2 - y1)(y1 - y3) + (z2 - z1)(z1 - z3)]
+
+c = (x3)² + (y3)² + (z3)² + (x1)² + (y1)² + (z1)² - 2[x3 x1 + y3 y1 + z3 z1] - r²
+
+
+u = (-b +- (sqrt(b² - 4(a)(c)))) / 2a

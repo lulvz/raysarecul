@@ -6,10 +6,12 @@
 
 using namespace std;
 
+float t;        // place to store the zero from the intersect funtion inside sphere
+
 int main()
 {
-    const int h = 1080;
-    const int w = 1920;
+    const int h = 100;
+    const int w = 200;
 
     // allocating memory to store the
     Color** pixel_col = new Color*[h];
@@ -24,7 +26,8 @@ int main()
     Color backg(128,0,128);
 
     // creating a sphere
-    Sphere sphere(Vec3(w/2,h/2,50),70);
+    //Sphere sphere(Vec3(w/2,h/2,10),70);
+    Sphere sphere(Vec3(4,4,4), 1);
 
     // setting the name of the file and creating an ofstream object
     ofstream out("img.ppm");
@@ -41,8 +44,6 @@ int main()
             // send ray for every pixel
             Ray ray(Vec3(x,y,0), Vec3(0,0,1));
 
-            float t;        // place to store the zero from the intersect funtion inside sphere
-
             // check for intersections
             if(sphere.intersect(ray,t)){
                 // set color to the damn pixel
@@ -56,6 +57,7 @@ int main()
             out << pixel_col[y][x].b << endl;
         }
     }
+    cout << t << endl;
     // deallocating the pixel_col thingy
     for(int i = 0; i < h; i++)
         delete[] pixel_col[i];

@@ -40,9 +40,9 @@ struct Sphere{
         Vec3 o=ray.o;
         Vec3 d=ray.d;
         Vec3 oc=o-c;        // vector with direction from sphere to camera
-        float b = 2*dot(oc,d);
+        float b = 2*dot(oc,d);      //
         float c = dot(oc,oc) - r*r;
-        float disc = (b*b-4*1*c)/2;
+        float disc = (b*b-4*1*c)/2;     // formula resolvente lol
         if(disc<0) return false;        // se o delta dentro da raiz for negativo quer dizer que nao ha zeros, como em matematica assim nao ha intersecoes com a esfera
         else{
             disc = sqrt(disc);      // se o delta for maior que zero calcula-se os valores ou o valor se for 0
