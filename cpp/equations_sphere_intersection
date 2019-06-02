@@ -25,5 +25,8 @@ b = 2[(x2 - x1)(x1 - x3) + (y2 - y1)(y1 - y3) + (z2 - z1)(z1 - z3)]
 
 c = (x3)² + (y3)² + (z3)² + (x1)² + (y1)² + (z1)² - 2[x3 x1 + y3 y1 + z3 z1] - r²
 
+// way simpler way of doing it
+lengthSq(rayDirection)*t^2 + 2*dot(rayPosition, rayDirection)*t + lengthSq(rayPosition) = radius^2
+
 
 u = (-b +- (sqrt(b² - 4(a)(c)))) / 2a
