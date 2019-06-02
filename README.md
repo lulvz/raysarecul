@@ -1,4 +1,4 @@
 # raysarecul
 attempt at ray tracing
-this was inspired in the raytracing in a weekend book
-I reccommend it a lot
+
+## the equations and processes used in this ray tracer to detect intersections with the sphere are in the equations_sphere_intersetion file and base.cpp inside the cpp folder
