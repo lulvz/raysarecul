@@ -37,9 +37,9 @@ struct Sphere{
     Sphere(Vec3 i, float j){ce=i,r=j;}
 
     bool intersect(Ray ray, float &t0, float &t1){
-        Vec3 o = ray.o - ce;
+        Vec3 o = ray.o - ce;        // simplify the operations by placing the sphere at the origin from what ive read
         Vec3 d = ray.d;
-        
+
         const float A = dot(d, d);
         const float B = 2 * dot(o, d);
         const float C = dot(o, o) - r * r;
