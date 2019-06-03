@@ -1,7 +1,7 @@
 # raysarecul
 attempt at ray tracing
 
-<a href="https://ibb.co/2WLv6Bd"><img src="https://i.ibb.co/Bc7yPRB/img.png" alt="img" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>free web image hosting</a><br />
+<a href="https://ibb.co/2WLv6Bd"><img src="https://i.ibb.co/Bc7yPRB/img.png" alt="img" border="0"></a><br />
 
 ## the equations and processes used in this ray tracer to detect intersections with the sphere are in the equations_sphere_intersetion file and base.cpp inside the cpp folder
 
