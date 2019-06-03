@@ -32,7 +32,7 @@ int main()
     Sphere sphere1(Vec3(w/4,h/4,30), 50);
 
     // setting the name of the file and creating an ofstream object
-    ofstream out("img.ppm");
+    ofstream out("images/img.ppm");
 
     // info
     cout << "starting the writing process" << endl;

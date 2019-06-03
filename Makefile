@@ -1,2 +1,2 @@
 all:
-	g++ /src/ray.cpp -o hello
+	g++ src/ray.cpp -o lulz
