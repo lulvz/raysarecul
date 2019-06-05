@@ -25,10 +25,14 @@ int main()
     // defining background color
     Color backg(128,0,128);
 
+    // defining color red lol
+    Color red(244, 66, 66);
+
     // creating a sphere
     // Sphere sphere(Vec3(w/2,h/2,10),70);
     Sphere sphere(Vec3(w/2,h/2,20), 100);
     Sphere sphere1(Vec3(w/4,h/4,30), 50);
+    Plane plane(0,0,1,-0.5);
 
     // setting the name of the file and creating an ofstream object
     ofstream out("images/img.ppm");
@@ -46,7 +50,7 @@ int main()
             Ray ray(Vec3(x,y,0), Vec3(0,0,1));
 
             // check for intersections
-            if(sphere.intersect(ray,ts0,ts1) || sphere1.intersect(ray,ts1,ts1)){
+            if(sphere.intersect(ray,ts0,ts1) || sphere1.intersect(ray,ts1,ts1) || plane.intersect(ray)){
                 // set color to the damn pixel
                 pixel_col[y][x] = white;
             } else{

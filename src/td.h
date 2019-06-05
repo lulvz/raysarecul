@@ -57,11 +57,27 @@ struct Sphere{
     }
 };
 
-struct Pane {
-    float a, b, c;
-    Pane(float i, float j, float k) {a=i, b=j, c=k;}
+struct Plane {
+    float a, b, c, d;
+    Plane(float i, float j, float k, float u) {a=i, b=j, c=k, d=u;}
 
-    bool intersect(Ray ray, float &tp);
+    // plane is defined by ax + by + cz + d = 0
+
+    bool intersect(Ray ray){
+        Vec3 o = ray.o;
+        Vec3 di = ray.d;
+
+        Vec3 o_d = di-o;
+
+        float x = o_d.x;
+        float y = o_d.y;
+        float z = o_d.z;
+
+        if((a*x + b*y + c*z + d) != 0) return false;
+        else{
+            return true;
+        }
+    }
 
 };
 
