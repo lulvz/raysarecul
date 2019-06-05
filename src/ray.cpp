@@ -6,8 +6,7 @@
 
 using namespace std;
 
-float t0;       // place to store the zeros from the intersect funtion inside sphere
-float t1;       // place to store the zeros from the intersect funtion inside sphere
+float ts0, ts1;       // place to store the zeros from the intersect funtion inside sphere
 
 int main()
 {
@@ -27,7 +26,7 @@ int main()
     Color backg(128,0,128);
 
     // creating a sphere
-    //Sphere sphere(Vec3(w/2,h/2,10),70);
+    // Sphere sphere(Vec3(w/2,h/2,10),70);
     Sphere sphere(Vec3(w/2,h/2,20), 100);
     Sphere sphere1(Vec3(w/4,h/4,30), 50);
 
@@ -47,7 +46,7 @@ int main()
             Ray ray(Vec3(x,y,0), Vec3(0,0,1));
 
             // check for intersections
-            if(sphere.intersect(ray,t0,t1) || sphere1.intersect(ray,t0,t1)){
+            if(sphere.intersect(ray,ts0,ts1) || sphere1.intersect(ray,ts1,ts1)){
                 // set color to the damn pixel
                 pixel_col[y][x] = white;
             } else{

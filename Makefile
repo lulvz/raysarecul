@@ -1,2 +1,2 @@
 all:
-	g++ src/ray.cpp -o lulz
+	g++ src/ray.cpp -o build/lulz

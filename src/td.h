@@ -36,7 +36,7 @@ struct Sphere{
 
     Sphere(Vec3 i, float j){ce=i,r=j;}
 
-    bool intersect(Ray ray, float &t0, float &t1){
+    bool intersect(Ray ray, float &ts0, float &ts1){
         Vec3 o = ray.o - ce;        // simplify the operations by placing the sphere at the origin from what ive read
         Vec3 d = ray.d;
 
@@ -50,11 +50,19 @@ struct Sphere{
             float zero0 = (-B-disc)/2*A;
             float zero1 = (-B+disc)/2*A;
 
-            t0 = zero0;
-            t1 = zero1;
+            ts0 = zero0;
+            ts1 = zero1;
         }
         return true;
     }
+};
+
+struct Pane {
+    float a, b, c;
+    Pane(float i, float j, float k) {a=i, b=j, c=k;}
+
+    bool intersect(Ray ray, float &tp);
+
 };
 
 struct Color{
