@@ -33,7 +33,7 @@ int main()
     // Sphere sphere(Vec3(w/2,h/2,10),70);
     Sphere sphere(Vec3(w/2,h/2,20), 100);
     Sphere sphere1(Vec3(w/4,h/4,30), 50);
-    Plane plane(Vec3(1.0,1.0,1.0), Vec3(1.0,1.0,1.5), Vec3(1.0,1.0,2.0));
+    Plane plane(Vec3(23, 22, 40), Vec3(0, 0, 1));
 
     // setting the name of the file and creating an ofstream object
     ofstream out("images/img.ppm");
@@ -48,7 +48,7 @@ int main()
     for (int y=0; y<h; y++){
         for (int x=0; x<w; x++){
             // send ray for every pixel
-            Ray ray(Vec3(x,y,0), Vec3(0,0,-1));
+            Ray ray(Vec3(x,y,0), Vec3(0,0,1));
 
             // check for intersections
             if(sphere.intersect(ray,ts0,ts1) || sphere1.intersect(ray,ts1,ts1)){
@@ -58,15 +58,14 @@ int main()
                 // backgtound color setting
                 pixel_col[y][x] = backg;
             }
+            if (pixel_col[y][x] != white && plane.intersect(ray, tp0)){
+                pixel_col[y][x] = red;
+            }
             out << pixel_col[y][x].r << " ";
             out << pixel_col[y][x].g << " ";
             out << pixel_col[y][x].b << endl;
         }
     }
-    Ray ray(Vec3(0,0,0), Vec3(0,0,1));
-    Vec3 res=plane.intersect(ray, tp0);
-    cout << res.x << tp0.x << tp0.y << tp0.z << endl;
-
     // deallocating the pixel_col thingy
     for(int i = 0; i < h; i++)
         delete[] pixel_col[i];

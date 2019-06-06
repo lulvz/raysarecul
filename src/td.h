@@ -58,45 +58,26 @@ struct Sphere{
 };
 
 struct Plane {
-    Vec3 a, b, c;       // 3 points that are in the plane
-    Plane(Vec3 i, Vec3 j, Vec3 k) {a=i, b=j, c=k;}
-
-    Vec3 cross(Vec3 Left, Vec3 Right){
-        Vec3 result;
-        result.x = Left.y * Right.z - Left.z * Right.y;
-        result.y = Left.z * Right.x - Left.x * Right.z;
-        result.z = Left.x * Right.y - Left.y * Right.x;
-        return result;
-    }       // returns the normal vector of the plane
-    Vec3 n = cross(a, b);        // normal
-    float dfo = dot(n, a);        // distance from the origin
-
-    Vec3 get_inters_point(Vec3 a, Vec3 b){
-        Vec3 ab = b-a;
-        const float nDotA = dot(n, a);
-        const float nDotAB = dot(n, ab);
-
-        return a + (ab * ((dfo - nDotA)/nDotAB));
-    }       // gets the intersection point of the ray and the vector
+    Vec3 p0, n;       // a point that is in the plane and a normal
+    Plane(Vec3 i, Vec3 u) {p0=i, n=u;}
 
     // plane is defined by ax + by + cz + d = 0 or n⃗ ⋅(k−j)=0, where k and j are points that lie on the plane
     // this last equation can be transformed to n⃗⋅k=d and n⃗⋅j=d where d-d=0
-    Vec3 intersect(Ray ray, Vec3 &tp0){
+
+    bool intersect(Ray ray, Vec3 &tp0){
         Vec3 o = ray.o;
         Vec3 di = ray.d;
+        // n ⋅ (pi-p0−)=0 where pi is what we want to determine (point of intersection)
 
-        if (dot(n, di)) {
-            return Vec3(0,0,0); // avoid divide by zero
-        }
-        else{
-            Vec3 inters_point = get_inters_point(o, di);
-            if(std::isnan(inters_point.x)){
-                tp0 = inters_point;
-                return inters_point;
-            } else{
-                return Vec3(0,0,0);
-            }
-        }
+        float k;        // number to multiply to get the point in the vector equation
+        if(dot(n, di) == 0) return false;       // avoid division by zero
+        if(dot(n, (p0-o)) == 0) return false;       // the ray is contained in the plane
+
+        k = dot(n, (p0-o))/dot(n, di);
+        if(k<0) return false;
+
+        tp0 = o + di*k;
+        return true;
     }
 };
 
@@ -104,6 +85,7 @@ struct Color{
     double r,g,b;
     Color(){r=g=b=0;};
     Color(double i, double j, double k){r=i,g=j,b=k;}
+    bool operator != (Color d){return (r!=d.r && g!=d.g && b!=d.b);}
 };
 
 #endif
