@@ -31,9 +31,9 @@ int main()
 
     // creating a sphere
     // Sphere sphere(Vec3(w/2,h/2,10),70);
-    Sphere sphere(Vec3(w/2,h/2,20), 100);
-    Sphere sphere1(Vec3(w/4,h/4,30), 50);
-    Plane plane(Vec3(23, 22, 40), Vec3(0, 0, 1));
+    Sphere sphere(Vec3(w/2,h/2,100), 100);
+    Sphere sphere1(Vec3(w/4,h/4,70), 50);
+    Plane plane(Vec3(23, 22, 10), Vec3(0, 0, 1));
 
     // setting the name of the file and creating an ofstream object
     ofstream out("images/img.ppm");
@@ -48,7 +48,7 @@ int main()
     for (int y=0; y<h; y++){
         for (int x=0; x<w; x++){
             // send ray for every pixel
-            Ray ray(Vec3(x,y,0), Vec3(0,0,1));
+            Ray ray(Vec3(x-200,60,y-200), Vec3(0,-1,-0.5));
 
             // check for intersections
             if(sphere.intersect(ray,ts0,ts1) || sphere1.intersect(ray,ts1,ts1)){
